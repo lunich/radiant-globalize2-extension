@@ -4,7 +4,6 @@
   %input{:type => "hidden", :name => "locale", :value => I18n.locale }
   .edit
     %span
-    = "#{params[:locale]} --- #{I18n.locale}"
     - Globalize2Extension.locales.map do |locale|
       = link_to_unless(I18n.locale.to_s == locale.to_s, "<img src='/images/admin/#{locale.downcase}.gif' alt='#{locale.upcase}' />", params.merge(:locale => locale))
       - if !@page.nil? && I18n.locale.to_s == locale.to_s

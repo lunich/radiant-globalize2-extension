@@ -5,12 +5,10 @@ module Globalize2
       base.class_eval do
         before_filter :set_locale
       end
-      puts "#{'-'*100} Globalize2.included"
     end
 
     module InstanceMethods
       def set_locale
-        puts "#{'-'*100} set_locale"
         @locale = params[:locale] || session[:locale] || Globalize2Extension.default_language
 
         session[:locale] = @locale
@@ -18,7 +16,6 @@ module Globalize2
       end
       
       def reset_locale
-        puts "!!!reset_locale!!!"
         unless I18n.locale.to_s == Globalize2Extension.default_language.to_s
           locale = Globalize2Extension.default_language
           session[:locale] = locale
