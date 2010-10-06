@@ -50,9 +50,11 @@ module Globalize2
 
     def update_globalize_record_with_reset
       if reset_translations && I18n.locale.to_s != Globalize2Extension.default_language
-        self.globalize_translations.find_by_locale(I18n.locale).destroy
+        p = self.globalize_translations.find_by_locale(I18n.locale)
+        p.destroy unless p.nil?
         parts.each do |part|
-          part.globalize_translations.find_by_locale(I18n.locale).destroy
+          p = part.globalize_translations.find_by_locale(I18n.locale)
+          p.destroy unless p.nil?
         end
       else
         update_globalize_record_without_reset
